@@ -9,21 +9,74 @@
 <body>
 
 
-  <nav class="fancy-nav">
-    <ul>
-      <li class="nav-item active"><a href="#home">Home</a></li>
-      <li class="nav-item"><a href="#services">Services</a></li>
-      <li class="nav-item"><a href="#portfolio">Portfolio</a></li>
-      <li class="nav-item"><a href="#about">About</a></li>
-      <li class="nav-item"><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<nav class="fancy-nav">
+  <ul>
+    <li class="nav-item"><a href="#home">Home</a></li>
+    <li class="nav-item"><a href="#services">Services</a></li>
+    <li class="nav-item"><a href="#portfolio">Portfolio</a></li>
+    <li class="nav-item"><a href="#about">About</a></li>
+    <li class="nav-item"><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
 
-  <main class="content-wrapper">
-    <h1>Chào mừng đến với trang web</h1>
-    <p>Coming soon</p>
-  </main>
+<main class="content-wrapper">
+  <section id="home" style="min-height: 100vh; padding-top: 40px;">
+    <h2>Home Section</h2>
+    <p>Nội dung trang chủ...</p>
+  </section>
+  
+  <section id="services" style="min-height: 100vh; padding-top: 40px;">
+    <h2>Services Section</h2>
+    <p>Dịch vụ của chúng tôi...</p>
+  </section>
+
+  <section id="portfolio" style="min-height: 100vh; padding-top: 40px;">
+    <h2>Portfolio Section</h2>
+    <p>Các dự án đã làm...</p>
+  </section>
+
+  <section id="about" style="min-height: 100vh; padding-top: 40px;">
+    <h2>About Section</h2>
+    <p>Thông tin giới thiệu...</p>
+  </section>
+
+  <section id="contact" style="min-height: 100vh; padding-top: 40px;">
+    <h2>Contact Section</h2>
+    <p>Liên hệ với chúng tôi...</p>
+  </section>
+</main>
+
+
+<script>
+ 
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".fancy-nav ul li a");
+
+  window.addEventListener("scroll", () => {
+    let currentSectionId = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      
+
+      if (window.scrollY >= sectionTop - 150) {
+        currentSectionId = section.getAttribute("id");
+      }
+    });
+
+   
+    navLinks.forEach((link) => {
+      const liElement = link.parentElement;
+      liElement.classList.remove("active");
+      
+      if (link.getAttribute("href") === `#${currentSectionId}`) {
+        liElement.classList.add("active");
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
