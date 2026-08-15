@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>404 — page not found</title>
+<meta name="color-scheme" content="dark" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;family=JetBrains+Mono&amp;display=swap" />
+<!-- Styles are inline on purpose: a relative style.css would 404 as well on
+     a deep URL such as /Portfolio/some/missing/path. -->
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    font-family: "Poppins", system-ui, sans-serif;
+    color: #e6edf3;
+    background: radial-gradient(80% 60% at 50% 0%, #123 0%, #0d1117 60%);
+    text-align: center;
+  }
+
+  .code {
+    margin: 0;
+    font-size: clamp(5rem, 22vw, 10rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(100deg, #ffffff, #6affdf 55%, #6ad7ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  h1 { margin: 6px 0 10px; font-size: 1.3rem; font-weight: 600; }
+  p { margin: 0 0 22px; color: #8b949e; }
+
+  code {
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: rgba(110, 118, 129, 0.18);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.85rem;
+    color: #6ad7ff;
+    word-break: break-all;
+  }
+
+  a {
+    display: inline-block;
+    padding: 12px 26px;
+    border-radius: 999px;
+    background: linear-gradient(100deg, #6affdf, #6ad7ff);
+    color: #05231d;
+    font-weight: 600;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+  <main>
+    <p class="code">404</p>
+    <h1>This page took a wrong turn</h1>
+    <p>Nothing lives at <code id="path">that address</code>.</p>
+    <a id="home" href="/">Back to the portfolio</a>
+  </main>
+
+  <script>
+    // Show what was requested, and point home at the site root whether this is
+    // served from a user site or from a project subpath like /Portfolio/.
+    document.getElementById("path").textContent = location.pathname;
+
+    var segments = location.pathname.split("/").filter(Boolean);
+    if (segments.length > 1) {
+      document.getElementById("home").href = "/" + segments[0] + "/";
+    }
+  </script>
+</body>
+</html>
